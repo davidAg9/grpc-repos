@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package todoPackage;
+
+service Todo{
+    rpc createTodo (TodoItem) returns (TodoItem);
+    rpc readTodos (noParams) returns (TodoItems);
+    rpc readTodosStream (noParams) returns (stream TodoItem);
+    rpc updateTodo (TodoItem) returns (TodoItem);
+    rpc deleteTodo (deleteIndex) returns (noParams);
+}
+
+
+message noParams {}
+
+message deleteIndex{
+    optional string index = 1;
+}
+message TodoItem{
+    string id = 1;
+    string text = 2;
+    optional  string dateCompleted = 3;
+    bool isCompleted = 4 ; 
+}
+
+message TodoItems {
+    repeated TodoItem todos = 1 ;
+} 
